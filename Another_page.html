@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Employee Salary Details</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                color: white;
+            }
+            h1 {
+                text-align: center;
+                color: black;
+                margin-bottom: 20px;
+            }
+            table {
+                width: 100%;
+                border: 1px solid;
+                margin-top: 20px;
+            }
+            th, td {
+                padding: 10px;
+                border: 1px solid black;
+                text-align: center;
+            }
+            th {
+                color: black;
+            }
+            td{
+                color: black;
+            }
+            .btn
+            {
+                display: flex; 
+                justify-content: space-between; 
+                align-items: center; 
+                margin-bottom: 10px;
+            }
+            #totalsalary{
+                display: none; 
+                text-align: center; 
+                text-decoration: black;
+                margin-top: 20px;
+            }
+            #toggleButton {
+                margin-top: 20px;
+                padding: 10px 20px;
+                background-color: #e74c3c;
+                color: rgb(0, 0, 0);
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            #toggleButton:hover {
+                background-color: #c0392b;
+            }
+            #totalSalaryButton {
+                margin-top: 20px;
+                padding: 10px 20px;
+                background-color: #27ae60;
+                color: rgb(0, 0, 0);
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            #totalSalaryButton:hover {
+                background-color: #6abf8d;
+            }
+            strong, span{
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Employee Salary Details</h1>
+            <table>
+                <tr>
+                    <th>Serial No</th>
+                    <th>Employee ID</th>
+                    <th>Employee Name</th>
+                    <th>Post</th>
+                    <th class="salaryColumn">Salary</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>10486</td>
+                    <td>Kamalpreet kaur</td>
+                    <td>Relationship Manager</td>
+                    <td class="salaryColumn">₹80,000</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>90151</td>
+                    <td>Tushar Kumar</td>
+                    <td>Investment Banker</td>
+                    <td class="salaryColumn">₹50,000</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>21536</td>
+                    <td>Arpit Sharma</td>
+                    <td>Treasury Analyist</td>
+                    <td class="salaryColumn">₹45,000</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>84728</td>
+                    <td>Rashmi Chauhan</td>
+                    <td>Account Manager</td>
+                    <td class="salaryColumn">₹80,000</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>83723</td>
+                    <td>Shivam Bansal</td>
+                    <td>Loan Officer</td>
+                    <td class="salaryColumn">₹40,000</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>63762</td>
+                    <td>Deepanshi Sharma</td>
+                    <td>Bank Associate</td>
+                    <td class="salaryColumn">₹48,000</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>93833</td>
+                    <td>Deepak Tiwari</td>
+                    <td>Probation Officer</td>
+                    <td class="salaryColumn">₹43,000</td>
+                </tr>
+            </table>
+            <div class="btn">
+                <button id="totalSalaryButton">Calculate Total Salary</button>
+            </div>
+            <div id="totalSalary">
+                <strong>Total Salary: </strong><span id="totalSalaryAmount">₹0</span>
+            </div>
+        </div>
+        <script>
+            const salaryColumns = document.querySelectorAll(".salaryColumn");
+            const toggleButton = document.getElementById("toggleButton");
+            const totalSalaryButton = document.getElementById("totalSalaryButton");
+            const totalSalaryDisplay = document.getElementById("totalSalary");
+            const totalSalaryAmountDisplay = document.getElementById("totalSalaryAmount");
+            totalSalaryButton.addEventListener("click", () => {
+                let totalSalary = 0;
+                for (let i = 1; i < salaryColumns.length; i++) {
+                    const column = salaryColumns[i];
+                    if (column.style.display !== "none") {
+                        const salaryValue = parseFloat(column.textContent.replace(/[^0-9.-]+/g, ""));
+                        totalSalary += salaryValue;
+                    }
+                }
+                totalSalaryAmountDisplay.textContent = "₹" + totalSalary.toFixed(2);
+                totalSalaryDisplay.style.display = "block";
+            });
+        </script>
+    </body>
+</html>
